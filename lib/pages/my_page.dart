@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class MyPage extends StatelessWidget {
   MyPage({Key? key}) : super(key: key);
 
+
+  // image一覧
   final images = [
     'https://english-club.jp/wp-content/uploads/2019/07/english-brain-1024x717.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvoSuexQoraIJ3Xc8Qde7Y_A-7v7vfwWxveA&usqp=CAU',
