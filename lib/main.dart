@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram/pages/search_page.dart';
 import 'package:instagram/user.dart';
 
 import 'pages/feed_page.dart';
@@ -45,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final _pageWidgets = [
     const FeedPage(), // タイムライン
+    SearchPage(),
     MyPage(), // マイページ
   ];
 
@@ -53,17 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _fetchFirebaseData(); // ページ読み込みでfetchする
+    _fetchFirebaseData();
   }
 
   void _fetchFirebaseData() async {
-    // Cloud Firestore のインスタンスを初期化
     final db = FirebaseFirestore.instance;
-    // データを読み取る
     final event = await db.collection("users").get();
     final docs = event.docs;
     final users = docs.map((doc) => User.fromFirestore(doc)).toList();
-
     setState(() {
       this.users = users;
     });
@@ -76,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'タイムライン'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ'),
         ],
         currentIndex: _currentIndex,

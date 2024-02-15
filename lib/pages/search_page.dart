@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import '../user.dart';
 import 'add_page.dart';
 
-class FeedPage extends StatefulWidget {
-  const FeedPage({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  State<FeedPage> createState() => _FeedPage();
+  State<SearchPage> createState() => _FeedPage();
 }
 
-class _FeedPage extends State<FeedPage> {
-
+class _FeedPage extends State<SearchPage> {
   List<User> users = [];
 
   @override
@@ -30,11 +29,10 @@ class _FeedPage extends State<FeedPage> {
       this.users = users;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('タイムライン')),
+      appBar: AppBar(title: const Text('検索')),
       body: ListView(
         children: users
             .map(
@@ -80,19 +78,6 @@ class _FeedPage extends State<FeedPage> {
         )
             .toList(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _goToAddPage,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  void _goToAddPage() async {
-    await Navigator.push(
-      context as BuildContext,
-      MaterialPageRoute(builder: (context) => AddPage()),
-    );
-    _fetchFirebaseData();
   }
 }
