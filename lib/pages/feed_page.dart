@@ -15,6 +15,12 @@ class _FeedPage extends State<FeedPage> {
 
   List<User> users = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchFirebaseData(); // ページ読み込みでfetchする
+  }
+
   void _fetchFirebaseData() async {
     final db = FirebaseFirestore.instance;
 
@@ -38,7 +44,7 @@ class _FeedPage extends State<FeedPage> {
               title: Text(user.first),
               subtitle: Text(user.last),
               trailing: Text(user.born.toString()),
-              onTap: () {
+              onTap: () { // 編集機能
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -59,9 +65,7 @@ class _FeedPage extends State<FeedPage> {
                                 .update({
                               'born': dateTime.year,
                             });
-
                             Navigator.pop(context);
-
                             _fetchFirebaseData();
                           },
                         ),
@@ -70,7 +74,7 @@ class _FeedPage extends State<FeedPage> {
                   },
                 );
               },
-              onLongPress: () async {
+              onLongPress: () async {  // 削除機能
                 final db = FirebaseFirestore.instance;
                 await db.collection("users").doc(user.id).delete();
                 _fetchFirebaseData();

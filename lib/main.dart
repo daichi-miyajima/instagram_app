@@ -44,8 +44,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final _pageWidgets = [
-    const FeedPage(),
-    MyPage(),
+    const FeedPage(), // タイムライン
+    MyPage(), // マイページ
   ];
 
   List<User> users = [];
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() { // statefulWidgetではsetState
+    setState(() {
       _currentIndex = index;
     });
   }
