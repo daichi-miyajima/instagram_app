@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../pages/add_page.dart';
+import '../add/add_page.dart';
 import 'feed_model.dart';
 
 class FeedPage extends StatelessWidget {
