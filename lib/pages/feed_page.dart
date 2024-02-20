@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../user.dart';
+import '../users.dart';
 import 'add_page.dart';
 
 class FeedPage extends StatefulWidget {
@@ -13,7 +13,7 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPage extends State<FeedPage> {
 
-  List<User> users = [];
+  List<Users> users = [];
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _FeedPage extends State<FeedPage> {
     final db = FirebaseFirestore.instance;
     final event = await db.collection("users").get();
     final docs = event.docs;
-    final users = docs.map((doc) => User.fromFirestore(doc)).toList();
+    final users = docs.map((doc) => Users.fromFirestore(doc)).toList();
     setState(() {
       this.users = users;
     });
@@ -34,7 +34,6 @@ class _FeedPage extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('タイムライン')),
       body: ListView(
         children: users
             .map(
