@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/pages/search_page.dart';
+import '../pages/search_page.dart';
 
+import '../feed/feed_model.dart';
 import 'main_model.dart';
-import 'pages/feed_page.dart';
-import 'pages/my_page.dart';
+import '../feed/feed_page.dart';
+import '../pages/my_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import '../firebase_options.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -14,8 +15,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => MainModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MainModel()),
+        ChangeNotifierProvider(create: (_) => FeedModel()), // FeedModel を提供する
+      ],
       child: const MyApp(),
     ),
   );

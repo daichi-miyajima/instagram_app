@@ -70,7 +70,6 @@ class _AddPageState extends State<AddPage> {
       "born": 1991,
     };
 
-    // Add a new document with a generated ID
     await db.collection("users").add(user);
   }
 }
