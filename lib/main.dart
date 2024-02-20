@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/pages/search_page.dart';
-import 'package:instagram/users.dart';
 
 import 'main_model.dart';
 import 'pages/feed_page.dart';
@@ -15,7 +13,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // runApp(const MyApp());
   runApp(
     ChangeNotifierProvider(
       create: (context) => MainModel(),
@@ -26,7 +23,6 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
-  // const MyApp({super.key});
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -42,15 +38,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-//
-//   final String title;
-//
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
 class MyHomePage extends StatelessWidget {
   // 入力されたメールアドレス
   String newUserEmail = "";
@@ -58,31 +45,6 @@ class MyHomePage extends StatelessWidget {
   String newUserPassword = "";
   // 登録・ログインに関する情報を表示
   String infoText = "";
-
-  // int _currentIndex = 0;
-  // final _pageWidgets = [
-  //   const FeedPage(), // タイムライン
-  //   SearchPage(),
-  //   MyPage(), // マイページ
-  // ];
-
-  // List<Users> users = [];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _fetchFirebaseData();
-  // }
-
-  // void _fetchFirebaseData() async {
-  //   final db = FirebaseFirestore.instance;
-  //   final event = await db.collection("users").get();
-  //   final docs = event.docs;
-  //   final users = docs.map((doc) => Users.fromFirestore(doc)).toList();
-  //   setState(() {
-  //     this.users = users;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +69,6 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      // body: _pageWidgets.elementAt(_currentIndex),
       body: const _PageNavigator(),
       bottomNavigationBar: Consumer<MainModel>(
         builder: (context, mainModel, child) => BottomNavigationBar(
@@ -125,12 +86,6 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _currentIndex = index;
-  //   });
-  // }
 }
 
 class _PageNavigator extends StatelessWidget {
