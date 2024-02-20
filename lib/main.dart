@@ -43,6 +43,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // 入力されたメールアドレス
+  String newUserEmail = "";
+  // 入力されたパスワード
+  String newUserPassword = "";
+  // 登録・ログインに関する情報を表示
+  String infoText = "";
+
   int _currentIndex = 0;
   final _pageWidgets = [
     const FeedPage(), // タイムライン
@@ -71,6 +78,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('タイムライン'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              // Providerを先に行うので放置
+              // 画面遷移
+              // await Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => LoginPage(),
+              //     fullscreenDialog: true,
+              //   ),
+              // );
+            },
+            icon: Icon(Icons.person),
+          ),
+        ],
+      ),
       body: _pageWidgets.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
