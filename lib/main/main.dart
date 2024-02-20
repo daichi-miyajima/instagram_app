@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/add/add_model.dart';
+import '../login/login_page.dart';
 import '../search/search_page.dart';
 
 import '../feed/feed_model.dart';
@@ -54,22 +55,19 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainModel = Provider.of<MainModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('ベストカルチャー'),
         actions: [
           IconButton(
             onPressed: () async {
-              // Providerを先に行うので放置
-              // 画面遷移
-              // await Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => LoginPage(),
-              //     fullscreenDialog: true,
-              //   ),
-              // );
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                  fullscreenDialog: true,
+                ),
+              );
             },
             icon: const Icon(Icons.person),
           ),
@@ -99,8 +97,6 @@ class _PageNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainModel = Provider.of<MainModel>(context, listen: false);
-
     return Consumer<MainModel>(
       builder: (context, mainModel, child) {
         final List<Widget> _pageWidgets = [
