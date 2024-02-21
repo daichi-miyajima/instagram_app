@@ -22,6 +22,10 @@ class FeedPage extends StatelessWidget {
               children: feedModel.users
                   .map(
                     (user) => ListTile(
+                  // 一旦画像は仮置き
+                  leading: user.imageURL != null
+                      ? Image.network(user.imageURL!)
+                      : null,
                   title: Text(user.first),
                   subtitle: Text(user.last),
                   trailing: Text(user.born.toString()),

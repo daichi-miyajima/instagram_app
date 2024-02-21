@@ -5,12 +5,14 @@ class Users {
   final String first;
   final String last;
   final int born;
+  final String? imageURL; // imageURL を nullable に変更
 
   Users({
     required this.id,
     required this.first,
     required this.last,
     required this.born,
+    this.imageURL,
   });
 
   factory Users.fromFirestore(DocumentSnapshot doc) {
@@ -20,6 +22,7 @@ class Users {
       first: data['first'],
       last: data['last'],
       born: data['born'],
+      imageURL: data['imageURL'],
     );
   }
 }

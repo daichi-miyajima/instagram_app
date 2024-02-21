@@ -15,6 +15,22 @@ class AddPage extends StatelessWidget {
         child: Consumer<AddModel>(
           builder: (context, addModel, child) => Column(
             children: [
+              InkWell(
+                onTap: () async {
+                  // カメラロール開いて写真選ぶ
+                  addModel.pickImage();
+                },
+                child: SizedBox(
+                  width: 100,
+                  height: 160,
+                  // 選んだ写真を表示
+                  child: addModel.imageFile != null
+                      ? Image.file(addModel.imageFile!)
+                      : Container(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               TextField(
                 decoration: const InputDecoration(
                   hintText: 'First',
@@ -33,7 +49,8 @@ class AddPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  await addModel.addToFirebase();
+                  // 画像アップロード処理
+                  await addModel.addImage();
                   Navigator.pop(context);
                 },
                 child: Text('追加する'),
