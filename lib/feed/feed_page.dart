@@ -21,52 +21,70 @@ class FeedPage extends StatelessWidget {
           } else {
             return ListView(
               children: feedModel.feeds
-                .map(
-                  (feed) => ListTile(
-                title: Row(
-                  children: [
-                    Text(
-                      feed.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
+                  .map(
+                    (feed) => ListTile(
+                  title: Column(
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(feed.userImageURL), // ユーザー画像
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            feed.userName, // ユーザー名
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Wrap(
-                      children: [
-                        SizedBox(width: 16),
-                        Chip(
-                          label: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0.1, vertical: 0.1),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
                             child: Text(
-                              feed.genre,
+                              feed.title,
                               style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          backgroundColor: Colors.white, // タグの背景色
-                        ),
-                      ],
+                          Wrap(
+                            children: [
+                              Chip(
+                                label: Text(
+                                  feed.genre,
+                                  style: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                backgroundColor: Colors.white, // タグの背景色
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  subtitle: Text(feed.description),
+                  trailing: feed.imageURL != null
+                      ? SizedBox(
+                    width: 100,
+                    child: Image.network(
+                      feed.imageURL!,
+                      fit: BoxFit.cover, // 画像を目一杯に広げる
                     ),
-                  ],
+                  )
+                      : null,
+                  onLongPress: () {
+                    feedModel.deleteFeed(feed.id);
+                  },
                 ),
-                subtitle: Text(feed.description),
-                trailing: feed.imageURL != null
-                    ? SizedBox(
-                  width: 100,
-                  child: Image.network(
-                    feed.imageURL!,
-                    fit: BoxFit.cover, // 画像を目一杯に広げる
-                  ),
-                )
-                    : null,
-                onLongPress: () {
-                  feedModel.deleteFeed(feed.id);
-                },
-                  ),
-                ).toList(),
+              ).toList(),
             );
+
           }
         },
       ),

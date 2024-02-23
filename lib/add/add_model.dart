@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,7 +27,7 @@ class AddModel extends ChangeNotifier {
   }
 
   // データの追加
-  Future<void> addImage() async {
+  Future<void> addToFirebase() async {
 
     final doc = FirebaseFirestore.instance.collection('feeds').doc();
 
@@ -39,12 +40,19 @@ class AddModel extends ChangeNotifier {
       imageURL = await task.ref.getDownloadURL();
     }
 
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final snapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    final data = snapshot.data();
+
     // firestoreに追加
     await doc.set({
       'title': title,
       'description': description,
       'imageURL': imageURL,
       'genre': genre,
+      'userId': data?['uid'],
+      'userName': data?['name'],
+      'userImageURL': data?['imageURL'],
     });
   }
 

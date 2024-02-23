@@ -58,7 +58,7 @@ class AddPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   // 画像アップロード処理
-                  await addModel.addImage();
+                  await addModel.addToFirebase();
                   Navigator.pop(context);
                   addModel.fetchFirebaseData();
                 },

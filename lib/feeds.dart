@@ -6,6 +6,9 @@ class Feeds {
   final String description;
   final String? imageURL;
   final String genre;
+  final String userId;
+  final String userName;
+  final String userImageURL;
 
   Feeds({
     required this.id,
@@ -13,6 +16,9 @@ class Feeds {
     required this.description,
     this.imageURL,
     required this.genre,
+    required this.userId,
+    required this.userName,
+    required this.userImageURL,
   });
 
   factory Feeds.fromFirestore(DocumentSnapshot doc) {
@@ -23,6 +29,9 @@ class Feeds {
       description: data['description'],
       imageURL: data['imageURL'],
       genre: data['genre'],
+      userId: data['userId'],
+      userName: data['userName'],
+      userImageURL: data['userImageURL'],
     );
   }
 }
