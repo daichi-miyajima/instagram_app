@@ -5,9 +5,15 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../feeds.dart';
+
 class AddModel extends ChangeNotifier {
-  String name = '';
+  String title = '';
+  String description = '';
   File? imageFile;
+  String genre = '';
+
+  List<Feeds> feeds = [];
 
   // カメラロール開いて写真選ぶ
   Future pickImage() async {
@@ -22,22 +28,32 @@ class AddModel extends ChangeNotifier {
   // データの追加
   Future<void> addImage() async {
 
-    final doc = FirebaseFirestore.instance.collection('users').doc();
+    final doc = FirebaseFirestore.instance.collection('feeds').doc();
 
     String? imageURL;
     if (imageFile != null) {
       // Storageにアップロード
       final task = await FirebaseStorage.instance
-          .ref('users/${doc.id}')
+          .ref('feeds/${doc.id}')
           .putFile(imageFile!);
       imageURL = await task.ref.getDownloadURL();
     }
 
     // firestoreに追加
     await doc.set({
-      'name': name,
-      "born": 1991,
+      'title': title,
+      'description': description,
       'imageURL': imageURL,
+      'genre': genre,
     });
+  }
+
+  void fetchFirebaseData() async {
+    final db = FirebaseFirestore.instance;
+    final event = await db.collection("feeds").get();
+    final docs = event.docs;
+    final feeds = docs.map((doc) => Feeds.fromFirestore(doc)).toList();
+    this.feeds = feeds;
+    notifyListeners();
   }
 }

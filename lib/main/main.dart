@@ -47,13 +47,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  // 入力されたメールアドレス
-  String newUserEmail = "";
-  // 入力されたパスワード
-  String newUserPassword = "";
-  // 登録・ログインに関する情報を表示
-  String infoText = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

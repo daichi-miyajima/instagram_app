@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../users.dart';
+import '../feeds.dart';
 
 class FeedModel extends ChangeNotifier {
-  List<Users> users = [];
+  List<Feeds> feeds = [];
 
   void fetchFirebaseData() async {
     final db = FirebaseFirestore.instance;
-    final event = await db.collection("users").get();
+    final event = await db.collection("feeds").get();
     final docs = event.docs;
-    final users = docs.map((doc) => Users.fromFirestore(doc)).toList();
-    this.users = users;
+    final feeds = docs.map((doc) => Feeds.fromFirestore(doc)).toList();
+    this.feeds = feeds;
     notifyListeners();
   }
 
-  void updateUserBorn(String userId, int year) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .update({'born': year});
-    fetchFirebaseData();
-  }
-
-  void deleteUser(String userId) async {
+  void deleteFeed(String feedId) async {
     final db = FirebaseFirestore.instance;
-    await db.collection("users").doc(userId).delete();
+    await db.collection("feeds").doc(feedId).delete();
     fetchFirebaseData();
   }
 }

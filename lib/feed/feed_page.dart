@@ -13,54 +13,59 @@ class FeedPage extends StatelessWidget {
     return Scaffold(
       body: Consumer<FeedModel>(
         builder: (context, feedModel, child) {
-          if (feedModel.users.isEmpty) {
+          if (feedModel.feeds.isEmpty) {
+            print('空だよ');
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
             return ListView(
-              children: feedModel.users
-                  .map(
-                    (user) => ListTile(
-                  // 一旦画像は仮置き
-                  leading: user.imageURL != null
-                      ? Image.network(user.imageURL!)
-                      : null,
-                  title: Text(user.name),
-                  trailing: Text(user.born.toString()),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Select Year"),
-                          content: Container(
-                            width: 300,
-                            height: 300,
-                            child: YearPicker(
-                              firstDate:
-                              DateTime(DateTime.now().year - 300, 1),
-                              lastDate:
-                              DateTime(DateTime.now().year + 100, 1),
-                              initialDate: DateTime.now(),
-                              selectedDate: DateTime(user.born),
-                              onChanged: (DateTime dateTime) {
-                                feedModel.updateUserBorn(
-                                    user.id, dateTime.year);
-                                Navigator.pop(context);
-                              },
+              children: feedModel.feeds
+                .map(
+                  (feed) => ListTile(
+                title: Row(
+                  children: [
+                    Text(
+                      feed.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Wrap(
+                      children: [
+                        SizedBox(width: 16),
+                        Chip(
+                          label: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0.1, vertical: 0.1),
+                            child: Text(
+                              feed.genre,
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                        );
-                      },
-                    );
-                  },
-                  onLongPress: () {
-                    feedModel.deleteUser(user.id);
-                  },
+                          backgroundColor: Colors.white, // タグの背景色
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              )
-                  .toList(),
+                subtitle: Text(feed.description),
+                trailing: feed.imageURL != null
+                    ? SizedBox(
+                  width: 100,
+                  child: Image.network(
+                    feed.imageURL!,
+                    fit: BoxFit.cover, // 画像を目一杯に広げる
+                  ),
+                )
+                    : null,
+                onLongPress: () {
+                  feedModel.deleteFeed(feed.id);
+                },
+                  ),
+                ).toList(),
             );
           }
         },

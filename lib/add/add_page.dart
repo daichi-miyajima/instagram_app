@@ -33,10 +33,26 @@ class AddPage extends StatelessWidget {
               ),
               TextField(
                 decoration: const InputDecoration(
-                  hintText: 'Name',
+                  hintText: 'タイトル',
                 ),
                 onChanged: (text) {
-                  addModel.name = text;
+                  addModel.title = text;
+                },
+              ),
+              TextField(
+                decoration: const InputDecoration(
+                  hintText: '思い出を書こう',
+                ),
+                onChanged: (text) {
+                  addModel.description = text;
+                },
+              ),
+              TextField(
+                decoration: const InputDecoration(
+                  hintText: 'ジャンル',
+                ),
+                onChanged: (text) {
+                  addModel.genre = text;
                 },
               ),
               ElevatedButton(
@@ -44,6 +60,7 @@ class AddPage extends StatelessWidget {
                   // 画像アップロード処理
                   await addModel.addImage();
                   Navigator.pop(context);
+                  addModel.fetchFirebaseData();
                 },
                 child: Text('追加する'),
               ),
