@@ -68,6 +68,7 @@ class MyPage extends StatelessWidget {
                                 builder: (context) => EditProfilePage(mymodel.name!, mymodel.description!),
                               ),
                             );
+                            mymodel.fetchUser();
                           },
                           icon: Icon(Icons.edit),
                         )
