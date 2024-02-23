@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddModel extends ChangeNotifier {
-  String first = '';
-  String last = '';
+  String name = '';
   File? imageFile;
 
   // カメラロール開いて写真選ぶ
@@ -36,8 +35,7 @@ class AddModel extends ChangeNotifier {
 
     // firestoreに追加
     await doc.set({
-      'first': first,
-      'last': last,
+      'name': name,
       "born": 1991,
       'imageURL': imageURL,
     });

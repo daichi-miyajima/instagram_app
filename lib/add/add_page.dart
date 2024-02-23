@@ -33,18 +33,10 @@ class AddPage extends StatelessWidget {
               ),
               TextField(
                 decoration: const InputDecoration(
-                  hintText: 'First',
+                  hintText: 'Name',
                 ),
                 onChanged: (text) {
-                  addModel.first = text;
-                },
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Last',
-                ),
-                onChanged: (text) {
-                  addModel.last = text;
+                  addModel.name = text;
                 },
               ),
               ElevatedButton(

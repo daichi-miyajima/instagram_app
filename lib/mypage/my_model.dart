@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class MyModel extends ChangeNotifier {
   bool isLoading = false;
   // 色々追加したい
-  String? first;
-  String? last;
+  String? name;
   String? imageURL;
   String? email;
   String? description;
@@ -28,8 +27,7 @@ class MyModel extends ChangeNotifier {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final snapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
     final data = snapshot.data();
-    this.first = data?['first'];
-    this.last = data?['last'];
+    this.name = data?['name'];
     this.imageURL = data?['imageURL'];
     this.description = data?['description'];
 

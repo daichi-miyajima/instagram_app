@@ -35,8 +35,7 @@ class _FeedPage extends State<SearchPage> {
         children: users
             .map(
               (user) => ListTile(
-              title: Text(user.first),
-              subtitle: Text(user.last),
+              title: Text(user.name),
               trailing: Text(user.born.toString()),
               onTap: () { // 編集機能
                 showDialog(

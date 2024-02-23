@@ -26,8 +26,7 @@ class FeedPage extends StatelessWidget {
                   leading: user.imageURL != null
                       ? Image.network(user.imageURL!)
                       : null,
-                  title: Text(user.first),
-                  subtitle: Text(user.last),
+                  title: Text(user.name),
                   trailing: Text(user.born.toString()),
                   onTap: () {
                     showDialog(

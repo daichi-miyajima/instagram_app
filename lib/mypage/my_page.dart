@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/edit_profile/edit_profile_page.dart';
 import 'package:instagram/mypage/my_model.dart';
 import 'package:provider/provider.dart';
 
@@ -31,47 +32,45 @@ class MyPage extends StatelessWidget {
                           mymodel.imageURL ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=',
                           height: 60,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start, // 左寄せ
+                            children: [
+                              Text(
+                                mymodel.name ?? '名前なし',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                '@dacchiman',
+                              ),
+                              Text(
+                                '#映画#ドラマ#旅行',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        const SizedBox(width: 16),
                         Spacer(),
-                        Column(
-                          children: [
-                            Text(
-                              '7,041',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                        IconButton(
+                          onPressed: () async {
+                            // 画面遷移
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditProfilePage(mymodel.name!, mymodel.description!),
                               ),
-                            ),
-                            Text(
-                              '投稿',
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Column(
-                          children: [
-                            Text(
-                              '4.6億',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text('フォロワー'),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Column(
-                          children: [
-                            Text(
-                              '99',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text('フォロー'),
-                          ],
-                        ),
+                            );
+                          },
+                          icon: Icon(Icons.edit),
+                        )
                       ],
                     ),
                   ),
@@ -81,24 +80,7 @@ class MyPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          mymodel.first ?? '名前なし',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          '#映画#ドラマ#旅行',
-                          style: TextStyle(
-                            color: Colors.blue,
-                          ),
-                        ),
-                        Text(
-                          '自己紹介',
-                        ),
-                        Text(mymodel.email ?? 'メールアドレスなし'),
-                        Text(
-                          mymodel.description ?? '自己紹介なし',
+                          mymodel.description ?? '僕にとっての最高の休日は朝サウナへ行った後、カフェで読書や映画を鑑賞し、夜は友人とお酒を飲んで語ることです。',
                         ),
                         TextButton(
                           onPressed: () async {
