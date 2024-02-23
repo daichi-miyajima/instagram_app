@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/add/add_model.dart';
 import '../login/login_page.dart';
@@ -61,15 +62,26 @@ class MyHomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage(),
-                  fullscreenDialog: true,
-                ),
-              );
+              // 画面遷移
+              if (FirebaseAuth.instance.currentUser != null) {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyPage(),
+                    fullscreenDialog: true,
+                  ),
+                );
+              } else {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                    fullscreenDialog: true,
+                  ),
+                );
+              }
             },
-            icon: const Icon(Icons.person),
+            icon: Icon(Icons.person),
           ),
         ],
       ),
