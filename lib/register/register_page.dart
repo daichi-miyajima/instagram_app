@@ -19,6 +19,22 @@ class RegisterPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
+                      InkWell(
+                        onTap: () async {
+                          // カメラロール開いて写真選ぶ
+                          model.pickImage();
+                        },
+                        child: SizedBox(
+                          width: 100,
+                          height: 160,
+                          // 選んだ写真を表示
+                          child: model.imageFile != null
+                              ? Image.file(model.imageFile!)
+                              : Container(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
                       TextField(
                         controller: model.titleController,
                         decoration: InputDecoration(
