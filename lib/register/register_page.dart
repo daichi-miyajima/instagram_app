@@ -36,7 +36,31 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       TextField(
-                        controller: model.titleController,
+                        controller: model.nameController,
+                        decoration: InputDecoration(
+                          hintText: 'Name',
+                        ),
+                        onChanged: (text) {
+                          model.setName(text);
+                        },
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      TextField(
+                        controller: model.descriptionController,
+                        decoration: InputDecoration(
+                          hintText: 'Description',
+                        ),
+                        onChanged: (text) {
+                          model.setDescription(text);
+                        },
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      TextField(
+                        controller: model.emailController,
                         decoration: InputDecoration(
                           hintText: 'Email',
                         ),
@@ -48,13 +72,14 @@ class RegisterPage extends StatelessWidget {
                         height: 8,
                       ),
                       TextField(
-                        controller: model.authorController,
+                        controller: model.passwordController,
                         decoration: InputDecoration(
                           hintText: 'パスワード',
                         ),
                         onChanged: (text) {
                           model.setPassword(text);
                         },
+                        obscureText: true,
                       ),
                       SizedBox(
                         height: 16,

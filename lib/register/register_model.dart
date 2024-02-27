@@ -7,13 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterModel extends ChangeNotifier {
-  final titleController = TextEditingController();
-  final authorController = TextEditingController();
+  // input項目を受け取る
+  final nameController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
+  // フィールド
+  String? name;
+  String? description;
   File? imageFile;
   String? email;
   String? password;
 
+  // ローディング
   bool isLoading = false;
 
   void startLoading() {
@@ -34,6 +41,17 @@ class RegisterModel extends ChangeNotifier {
       imageFile = File(pickedFile.path);
       notifyListeners();
     }
+  }
+
+  // onChanegedでset関数を走らせる
+  void setName(String name) {
+    this.name = name;
+    notifyListeners();
+  }
+
+  void setDescription(String description) {
+    this.description = description;
+    notifyListeners();
   }
 
   void setEmail(String email) {
@@ -59,9 +77,11 @@ class RegisterModel extends ChangeNotifier {
       imageURL = await task.ref.getDownloadURL();
     }
 
-    // emailとパスワード
-    this.email = titleController.text;
-    this.password = authorController.text;
+    // inputされた値をregisterモデルのフィールドにセット
+    this.name = nameController.text;
+    this.description = descriptionController.text;
+    this.email = emailController.text;
+    this.password = passwordController.text;
 
     if (email != null && password != null) {
       // firebase authでユーザー作成
@@ -77,6 +97,8 @@ class RegisterModel extends ChangeNotifier {
         // 管理画面にpassword見れちゃいけない
         await doc.set({
           'uid': uid,
+          'name': name,
+          'description': description,
           'imageURL': imageURL,
           'email': email,
         });

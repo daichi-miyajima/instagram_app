@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/edit_profile/edit_profile_page.dart';
+import 'package:instagram/login/login_page.dart';
 import 'package:instagram/mypage/my_model.dart';
 import 'package:provider/provider.dart';
 
@@ -87,7 +88,14 @@ class MyPage extends StatelessWidget {
                           onPressed: () async {
                             // ログアウト
                             await mymodel.logout();
-                            Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                                fullscreenDialog: true,
+                              ),
+                            );
                           },
                           child: Text('ログアウト'),
                         )
