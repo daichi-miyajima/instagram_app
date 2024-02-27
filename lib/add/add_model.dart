@@ -16,6 +16,18 @@ class AddModel extends ChangeNotifier {
 
   List<Feeds> feeds = [];
 
+  bool isLoading = false;
+
+  void startLoading() {
+    isLoading = true;
+    notifyListeners();
+  }
+
+  void endLoading() {
+    isLoading = false;
+    notifyListeners();
+  }
+
   // カメラロール開いて写真選ぶ
   Future pickImage() async {
     final picker = ImagePicker();
