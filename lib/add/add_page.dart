@@ -47,13 +47,27 @@ class AddPage extends StatelessWidget {
                   addModel.description = text;
                 },
               ),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'ジャンル',
-                ),
-                onChanged: (text) {
-                  addModel.genre = text;
+              DropdownButton(
+                items: const [
+                  DropdownMenuItem(
+                    child: Text('映画'),
+                    value: 'movie',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('旅行'),
+                    value: 'travel',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('サウナ'),
+                    value: 'sauna',
+                  ),
+                ],
+                onChanged: (String? value) {
+                  addModel.setGenre(value!);
+                  addModel.fetchFirebaseData();
                 },
+                //7
+                value: addModel.genre,
               ),
               ElevatedButton(
                 onPressed: () async {

@@ -12,7 +12,7 @@ class AddModel extends ChangeNotifier {
   String title = '';
   String description = '';
   File? imageFile;
-  String genre = '';
+  String genre = 'movie';
 
   List<Feeds> feeds = [];
 
@@ -63,5 +63,9 @@ class AddModel extends ChangeNotifier {
     final feeds = docs.map((doc) => Feeds.fromFirestore(doc)).toList();
     this.feeds = feeds;
     notifyListeners();
+  }
+
+  void setGenre(String value) {
+    this.genre = value;
   }
 }

@@ -51,7 +51,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ベストカルチャー'),
+        title: const Text('TalkBest'),
         actions: [
           IconButton(
             onPressed: () async {
