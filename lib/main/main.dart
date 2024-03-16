@@ -50,34 +50,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TalkBest'),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              // 画面遷移
-              if (FirebaseAuth.instance.currentUser != null) {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyPage(),
-                    fullscreenDialog: true,
-                  ),
-                );
-              } else {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                    fullscreenDialog: true,
-                  ),
-                );
-              }
-            },
-            icon: Icon(Icons.person),
-          ),
-        ],
-      ),
       body: const _PageNavigator(),
       bottomNavigationBar: Consumer<MainModel>(
         builder: (context, mainModel, child) => BottomNavigationBar(

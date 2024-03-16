@@ -6,6 +6,7 @@ class Feeds {
   final String description;
   final String? imageURL;
   final String genre;
+  final int rank;
   final String userId;
   final String userName;
   final String userImageURL;
@@ -16,6 +17,7 @@ class Feeds {
     required this.description,
     this.imageURL,
     required this.genre,
+    required this.rank,
     required this.userId,
     required this.userName,
     required this.userImageURL,
@@ -29,6 +31,7 @@ class Feeds {
       description: data['description'],
       imageURL: data['imageURL'],
       genre: data['genre'],
+      rank: data['rank'],
       userId: data['userId'],
       userName: data['userName'],
       userImageURL: data['userImageURL'],

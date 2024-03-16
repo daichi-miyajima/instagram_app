@@ -13,6 +13,7 @@ class AddModel extends ChangeNotifier {
   String description = '';
   File? imageFile;
   String genre = 'movie';
+  int rank = 1;
 
   List<Feeds> feeds = [];
 
@@ -62,6 +63,7 @@ class AddModel extends ChangeNotifier {
       'description': description,
       'imageURL': imageURL,
       'genre': genre,
+      'rank': rank,
       'userId': data?['uid'],
       'userName': data?['name'],
       'userImageURL': data?['imageURL'],
@@ -79,5 +81,9 @@ class AddModel extends ChangeNotifier {
 
   void setGenre(String value) {
     this.genre = value;
+  }
+
+  void setRank(int value) {
+    this.rank = value;
   }
 }

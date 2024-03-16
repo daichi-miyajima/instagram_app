@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram/component/header.dart';
 import 'package:instagram/edit_profile/edit_profile_page.dart';
 import 'package:instagram/login/login_page.dart';
 import 'package:instagram/mypage/my_model.dart';
@@ -21,6 +23,7 @@ class MyPage extends StatelessWidget {
       child: Consumer<MyModel>(
         builder: (context, mymodel, child) {
           return Scaffold(
+            appBar: Header(),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start, // 左寄せ

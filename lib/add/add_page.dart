@@ -71,6 +71,36 @@ class AddPage extends StatelessWidget {
                     //7
                     value: addModel.genre,
                   ),
+                  DropdownButton(
+                    items: const [
+                      DropdownMenuItem(
+                        child: Text('1位'),
+                        value: 1,
+                      ),
+                      DropdownMenuItem(
+                        child: Text('2位'),
+                        value: 2,
+                      ),
+                      DropdownMenuItem(
+                        child: Text('3位'),
+                        value: 3,
+                      ),
+                      DropdownMenuItem(
+                        child: Text('4位'),
+                        value: 4,
+                      ),
+                      DropdownMenuItem(
+                        child: Text('5位'),
+                        value: 5,
+                      ),
+                    ],
+                    onChanged: (int? value) {
+                      addModel.setRank(value!);
+                      addModel.fetchFirebaseData();
+                    },
+                    //7
+                    value: addModel.rank,
+                  ),
                   ElevatedButton(
                     onPressed: () async {
                       addModel.startLoading();
