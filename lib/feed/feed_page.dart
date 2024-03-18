@@ -63,35 +63,18 @@ class FeedPage extends StatelessWidget {
                                 ),
                                 backgroundColor: Colors.white, // タグの背景色
                               ),
-                              // addModel.rankに応じて条件分岐
-                              // if (feed.rank == 1) ...[
-                              //   Icon(Icons.star, color: Colors.amber), // 1位の場合は星アイコンを金色に
-                              //   Text('1', style: TextStyle(color: Colors.white)), // 1位の場合は数字を白色に
-                              // ] else if (feed.rank == 2) ...[
-                              //   Icon(Icons.star, color: Colors.grey), // 2位の場合は星アイコンを銀色に
-                              //   Text('2', style: TextStyle(color: Colors.black)), // 2位の場合は数字を黒色に
-                              // ] else if (feed.rank == 3) ...[
-                              //   Icon(Icons.star, color: Colors.brown), // 3位の場合は星アイコンを銅色に
-                              //   Text('3', style: TextStyle(color: Colors.black)), // 3位の場合は数字を黒色に
-                              // ] else if (feed.rank == 4) ...[
-                              //   Icon(Icons.star, color: Colors.brown), // 4位の場合は星アイコンを銅色に
-                              //   Text('4', style: TextStyle(color: Colors.black)), // 4位の場合は数字を黒色に
-                              // ] else if (feed.rank == 5) ...[
-                              //   Icon(Icons.star, color: Colors.brown), // 5位の場合は星アイコンを銅色に
-                              //   Text('5', style: TextStyle(color: Colors.black)), // 5位の場合は数字を黒色に
-                              // ],
                               Stack(
                                 alignment: Alignment.center,
                                 children: [
                                   Icon(
-                                    Icons.circle, // 1位から3位は星、4位と5位は丸
-                                    size: 40, // アイコンのサイズを大きくする
+                                    feed.rank == 1 ? Icons.star : (feed.rank == 2 ? Icons.star : (feed.rank == 3 ? Icons.star : Icons.circle)), // アイコンの色を設定,
+                                    size: 48, // アイコンのサイズを大きくする
                                     color: feed.rank == 1 ? Colors.amber : (feed.rank == 2 ? Colors.grey : (feed.rank == 3 ? Colors.brown : Colors.blueGrey)), // アイコンの色を設定
                                   ), // アイコンの色を設定
                                   Text(
                                     feed.rank.toString(),
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: feed.rank == 1 ? Colors.black : (feed.rank == 2 ? Colors.black : (feed.rank == 3 ? Colors.black : Colors.white)), // アイコンの色を設定
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ), // 数字の色は黒色に

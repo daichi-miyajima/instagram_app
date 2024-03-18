@@ -177,6 +177,16 @@ class MyPage extends StatelessWidget {
                       return InstagramPostItem(imageUrl: imageUrl);
                     }).toList(),
                   ),
+                  // ListViewにしてtitleだけ表示する形にする
+                  // ListView(
+                  //     children: [
+                  //       _menuItem("メニュー1", Icon(Icons.settings)),
+                  //       _menuItem("メニュー2", Icon(Icons.map)),
+                  //       _menuItem("メニュー3", Icon(Icons.room)),
+                  //       _menuItem("メニュー4", Icon(Icons.local_shipping)),
+                  //       _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
+                  //     ]
+                  // ),
                 ],
               ),
             ),
