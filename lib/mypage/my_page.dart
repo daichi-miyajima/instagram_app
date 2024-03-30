@@ -102,25 +102,44 @@ class MyPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    primary: false,
-                    crossAxisCount: 3,
-                    children: images.map((imageUrl) {
-                      return InstagramPostItem(imageUrl: imageUrl);
-                    }).toList(),
+                  Container(
+                    color: Colors.grey,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text(
+                          'My Talk Best5'
+                        ),
+                      ),
+                    ),
                   ),
-                  // ListViewにしてtitleだけ表示する形にする
-                  // ListView(
-                  //     children: [
-                  //       _menuItem("メニュー1", Icon(Icons.settings)),
-                  //       _menuItem("メニュー2", Icon(Icons.map)),
-                  //       _menuItem("メニュー3", Icon(Icons.room)),
-                  //       _menuItem("メニュー4", Icon(Icons.local_shipping)),
-                  //       _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
-                  //     ]
-                  // ),
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: ListView(
+                      children: (mymodel.myFeeds!.toList()
+                        ..sort((a, b) => a.rank.compareTo(b.rank)))
+                          .map<Widget>((feed) => ListTile(
+                        title: Row(
+                          children: [
+                            Text(
+                              feed.rank.toString(),
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              feed.title,
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        subtitle: null,
+                      ),
+                      ).toList(),
+                    ),
+                  ),
                 ],
               ),
             ),

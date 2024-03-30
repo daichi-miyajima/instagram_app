@@ -102,7 +102,6 @@ class FeedPage extends StatelessWidget {
                 ),
               ).toList(),
             );
-
           }
         },
       ),
