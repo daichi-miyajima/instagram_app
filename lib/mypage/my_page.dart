@@ -69,7 +69,7 @@ class MyPage extends StatelessWidget {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => EditProfilePage(mymodel.name!, mymodel.description!),
+                                builder: (context) => EditProfilePage(mymodel.name!),
                               ),
                             );
                             mymodel.fetchUser();
@@ -84,9 +84,6 @@ class MyPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          mymodel.description ?? '僕にとっての最高の休日は朝サウナへ行った後、カフェで読書や映画を鑑賞し、夜は友人とお酒を飲んで語ることです。',
-                        ),
                         TextButton(
                           onPressed: () async {
                             // ログアウト
@@ -102,69 +99,6 @@ class MyPage extends StatelessWidget {
                           },
                           child: Text('ログアウト'),
                         )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: OutlinedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'フォロー中',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  style: OutlinedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                child: OutlinedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'メッセージ',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  style: OutlinedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.black,
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

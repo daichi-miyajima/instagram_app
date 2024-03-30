@@ -47,15 +47,6 @@ class RegisterPage extends StatelessWidget {
                       SizedBox(
                         height: 8,
                       ),
-                      TextField(
-                        controller: model.descriptionController,
-                        decoration: InputDecoration(
-                          hintText: 'Description',
-                        ),
-                        onChanged: (text) {
-                          model.setDescription(text);
-                        },
-                      ),
                       SizedBox(
                         height: 8,
                       ),

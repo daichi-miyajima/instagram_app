@@ -4,16 +4,14 @@ import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 
 class EditProfilePage extends StatelessWidget {
-  EditProfilePage(this.name, this.description);
+  EditProfilePage(this.name);
   final String name;
-  final String description;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<EditProfileModel>(
       create: (_) => EditProfileModel(
-        name,
-        description,
+        name
       ),
       child: Scaffold(
         appBar: AppBar(
@@ -32,18 +30,6 @@ class EditProfilePage extends StatelessWidget {
                     ),
                     onChanged: (text) {
                       model.setName(text);
-                    },
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  TextField(
-                    controller: model.descriptionController,
-                    decoration: InputDecoration(
-                      hintText: '自己紹介',
-                    ),
-                    onChanged: (text) {
-                      model.setDescription(text);
                     },
                   ),
                   SizedBox(

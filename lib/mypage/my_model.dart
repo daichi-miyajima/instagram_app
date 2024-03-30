@@ -8,7 +8,6 @@ class MyModel extends ChangeNotifier {
   String? name;
   String? imageURL;
   String? email;
-  String? description;
 
   void startLoading() {
     isLoading = true;
@@ -29,7 +28,6 @@ class MyModel extends ChangeNotifier {
     final data = snapshot.data();
     this.name = data?['name'];
     this.imageURL = data?['imageURL'];
-    this.description = data?['description'];
 
     notifyListeners();
   }

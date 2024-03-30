@@ -9,13 +9,11 @@ import 'package:image_picker/image_picker.dart';
 class RegisterModel extends ChangeNotifier {
   // input項目を受け取る
   final nameController = TextEditingController();
-  final descriptionController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   // フィールド
   String? name;
-  String? description;
   File? imageFile;
   String? email;
   String? password;
@@ -49,11 +47,6 @@ class RegisterModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setDescription(String description) {
-    this.description = description;
-    notifyListeners();
-  }
-
   void setEmail(String email) {
     this.email = email;
     notifyListeners();
@@ -79,7 +72,6 @@ class RegisterModel extends ChangeNotifier {
 
     // inputされた値をregisterモデルのフィールドにセット
     this.name = nameController.text;
-    this.description = descriptionController.text;
     this.email = emailController.text;
     this.password = passwordController.text;
 
@@ -98,7 +90,6 @@ class RegisterModel extends ChangeNotifier {
         await doc.set({
           'uid': uid,
           'name': name,
-          'description': description,
           'imageURL': imageURL,
           'email': email,
         });
