@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../feeds.dart';
+import '../users.dart';
 
 class FeedModel extends ChangeNotifier {
   List<Feeds> feeds = [];
+  List<Users> users = [];
 
   void fetchFirebaseData() async {
     final db = FirebaseFirestore.instance;

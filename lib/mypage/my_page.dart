@@ -1,10 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/component/header.dart';
 import 'package:instagram/edit_profile/edit_profile_page.dart';
 import 'package:instagram/login/login_page.dart';
 import 'package:instagram/mypage/my_model.dart';
 import 'package:provider/provider.dart';
+
+import '../add/add_page.dart';
+import '../feed/feed_model.dart';
 
 class MyPage extends StatelessWidget {
   MyPage({Key? key}) : super(key: key);
@@ -210,6 +212,17 @@ class MyPage extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddPage()),
+                  ).then((_) => Provider.of<FeedModel>(context, listen: false)
+                      .fetchFirebaseData());
+                },
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
               ),
             )
           );
