@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/add/add_model.dart';
-import '../login/login_page.dart';
 import '../search/search_page.dart';
 
 import '../feed/feed_model.dart';
@@ -77,9 +75,9 @@ class _PageNavigator extends StatelessWidget {
     return Consumer<MainModel>(
       builder: (context, mainModel, child) {
         final List<Widget> _pageWidgets = [
-          const FeedPage(), // タイムライン
-          const SearchPage(),
-          MyPage(), // マイページ
+          FeedPage(),
+          SearchPage(),
+          MyPage(),
         ];
 
         return _pageWidgets[mainModel.currentIndex];

@@ -110,19 +110,18 @@ class MyPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // タブでカテゴリ毎に切り替え
                     TabBar(
                       tabs: [
                         Tab(
-                          icon: Icon(Icons.movie), // 映画のアイコン
+                          icon: Icon(Icons.movie),
                           text: '映画',
                         ),
                         Tab(
-                          icon: Icon(Icons.travel_explore), // 旅行のアイコン
+                          icon: Icon(Icons.flight),
                           text: '旅行',
                         ),
                         Tab(
-                          icon: Icon(Icons.spa), // 旅行のアイコン
+                          icon: Icon(Icons.airline_seat_recline_extra),
                           text: 'サウナ',
                         ),
                       ],
