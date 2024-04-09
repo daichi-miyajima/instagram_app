@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/add/add_model.dart';
+import 'package:instagram/feed/movie_feed/movie_feed_model.dart';
+import 'package:instagram/feed/sauna_feed/sauna_feed_model.dart';
+import 'package:instagram/feed/travel_feed/travel_feed_model.dart';
 import '../search/search_page.dart';
 
 import '../feed/feed_model.dart';
@@ -21,6 +24,9 @@ void main() async {
         ChangeNotifierProvider(create: (_) => MainModel()),
         ChangeNotifierProvider(create: (_) => FeedModel()),
         ChangeNotifierProvider(create: (_) => AddModel()),
+        ChangeNotifierProvider(create: (_) => MovieFeedModel()),
+        ChangeNotifierProvider(create: (_) => TravelFeedModel()),
+        ChangeNotifierProvider(create: (_) => SaunaFeedModel()),
       ],
       child: const MyApp(),
     ),
